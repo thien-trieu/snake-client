@@ -12,11 +12,10 @@ const connect = function() {
     console.log('Successfully connected to game server 🤗');
   });
 
-  conn.on("connect", (data) => {
-    conn.write("Name: Kim");
-  });
-
-
+  process.stdin.on('data', (data) => {
+    conn.write(data);
+  })
+  
   conn.on('data', (data) => {
     console.log(data.toString());
     conn.end();
